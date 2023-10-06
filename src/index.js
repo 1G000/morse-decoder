@@ -42,17 +42,24 @@ function decode(expr) {
   Object.entries(MORSE_TABLE).forEach(([value, key]) => {
     MORSE_TABLE_MAP.set(value, key);
   });
-  expr = expr
-    .split("**********")
-    .map((el) =>
-      el.replaceAll(11, "-").replaceAll(10, ".").replaceAll("0", "")
-    );
+  MORSE_TABLE_MAP.set("**********", " ");
+  let charLength = 10;
+  let newStr = [];
+  for (let i = 0; i < expr.length; i += charLength)
+    newStr.push(expr.slice(i, i + charLength));
+  newStr.join("");
+
+  expr = newStr.map((el) =>
+    el.replaceAll(11, "-").replaceAll(10, ".").replaceAll("0", "")
+  );
+
   let result = [];
   for (let i = 0; i < expr.length; i++) {
     result.push(MORSE_TABLE_MAP.get(expr[i]));
   }
   return result.join("");
 }
+
 module.exports = {
   decode,
 };
