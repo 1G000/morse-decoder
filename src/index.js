@@ -46,7 +46,6 @@ function decode(expr) {
   for (let i = 0; i < expr.length; i++) {
     result.push(MORSE_TABLE_MAP.get(expr.charAt(i)));
   }
-  console.log(result);
   result = result.map((el) => el.replaceAll("-", 11).replaceAll(".", 10));
   result = result.map((el) => {
     el = el.split("");
