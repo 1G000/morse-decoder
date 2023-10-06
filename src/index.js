@@ -37,12 +37,11 @@ const MORSE_TABLE = {
   "-----": "0",
 };
 
-const MORSE_TABLE_MAP = new Map();
-Object.entries(MORSE_TABLE).forEach(([key, value]) => {
-  MORSE_TABLE_MAP.set(value, key);
-});
-
 function decode(expr) {
+  const MORSE_TABLE_MAP = new Map();
+  Object.entries(MORSE_TABLE).forEach(([key, value]) => {
+    MORSE_TABLE_MAP.set(value, key);
+  });
   let result = [];
   for (let i = 0; i < expr.length; i++) {
     result.push(MORSE_TABLE_MAP.get(expr.charAt(i)));
@@ -58,7 +57,7 @@ function decode(expr) {
     return el.join("");
   });
 
-  return result.join("");
+  return console.log(result.join(""));
 }
 
 decode("me");
