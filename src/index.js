@@ -39,28 +39,20 @@ const MORSE_TABLE = {
 
 function decode(expr) {
   const MORSE_TABLE_MAP = new Map();
-  Object.entries(MORSE_TABLE).forEach(([key, value]) => {
+  Object.entries(MORSE_TABLE).forEach(([value, key]) => {
     MORSE_TABLE_MAP.set(value, key);
   });
+  expr = expr
+    .split("**********")
+    .map((el) =>
+      el.replaceAll(11, "-").replaceAll(10, ".").replaceAll("0", "")
+    );
   let result = [];
   for (let i = 0; i < expr.length; i++) {
-    result.push(MORSE_TABLE_MAP.get(expr.charAt(i)));
+    result.push(MORSE_TABLE_MAP.get(expr[i]));
   }
-  result = result.map((el) => el.replaceAll("-", 11).replaceAll(".", 10));
-  result = result.map((el) => {
-    el = el.split("");
-    while (el.length < 8) {
-      el.unshift(0);
-    }
-
-    return el.join("");
-  });
-
-  return console.log(result.join("**********"));
+  return result.join("");
 }
-
-decode("me");
-
 module.exports = {
   decode,
 };
