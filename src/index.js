@@ -56,7 +56,7 @@ function decode(expr) {
     return el.join("");
   });
 
-  return console.log(result.join(""));
+  return console.log(result.join("**********"));
 }
 
 decode("me");
